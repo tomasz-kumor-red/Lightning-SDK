@@ -1,3 +1,5 @@
+import Ui from "./Ui.js";
+
 export default class App extends lng.Component {
 
     static g(c) {
