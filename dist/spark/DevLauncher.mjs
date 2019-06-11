@@ -28,7 +28,7 @@ export default class DevLauncher {
     }
 
     _startApp() {
-        ux.Ui.staticFilesPath = __dirname + "./";
+        ux.Ui.staticFilesPath = __dirname + "/";
 
         this._ui = new ux.Ui(this._lightningOptions);
         this._ui.startApp(this._appType);
