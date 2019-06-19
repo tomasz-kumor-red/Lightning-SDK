@@ -1,3 +1,5 @@
+import Ui from "./Ui.js";
+
 export default class App extends lng.Component {
 
     static g(c) {
@@ -17,7 +19,7 @@ export default class App extends lng.Component {
     }
 
     static getPath(relPath) {
-        return "static/" + relPath;
+        return Ui._staticFilesPath + "static/" + relPath;
     }
 
     static get identifier() {
