@@ -1,5 +1,4 @@
 import fs from "fs";
-import InputEvent from 'input-event';
 
 // Notice that you must run as root or otherwise have access to the dev input files.
 
