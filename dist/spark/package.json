@@ -8,6 +8,7 @@
   "dependencies": {
     "esm": "^3.2.11",
     "wpe-lightning-spark": "https://github.com/pxscene/Lightning-Spark.git",
+    "node-fetch": "^1.7.3",
     "node-localstorage": "^1.3.0",
     "websocket": "^1.0.25",
     "xhr2": "^0.1.4"
