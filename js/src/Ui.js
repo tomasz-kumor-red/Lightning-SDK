@@ -47,11 +47,21 @@ export default class Ui extends lng.Application {
     }
 
     static loadFonts(fonts) {
-        if (lng.Utils.isNode) {
+        if (lng.Utils.isNode && !lng.Utils.isSpark) {
             // Font loading not supported. Fonts should be installed in Linux system and then they can be picked up by cairo.
             return Promise.resolve();
         }
 
+        if (lng.Utils.isSpark) {
+            let promises = [];
+            let fontResources = new Map();
+            for (let font of fonts) {
+                let fontResource = sparkscene.create({t: "fontResource", url: font.url});
+                promises.push(fontResource.ready);
+                fontResources.set(font.family, fontResource);
+            }
+            return Promise.all(promises).then(() => {return fontResources});
+        }
         const fontFaces = fonts.map(({family, url, descriptors}) => new FontFace(family, `url(${url})`, descriptors));
         fontFaces.forEach(fontFace => {
             document.fonts.add(fontFace);
