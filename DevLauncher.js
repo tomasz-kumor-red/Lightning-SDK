@@ -1,4 +1,5 @@
 import {} from "./js/lib/lightning-web.js";
+import maf from "./js/src/maf.js";
 import ux from "./js/src/ux.js";
 
 export default class DevLauncher {
@@ -40,7 +41,6 @@ export default class DevLauncher {
 
     _start(lightningOptions = {}) {
         this._addStyles();
-        this._openFirewall();
         this._lightningOptions = this._getLightningOptions(lightningOptions);
         return this._startApp();
     }
@@ -97,11 +97,6 @@ body {
             script.src = src;
             document.head.appendChild(script);
         });
-    }
-
-    _openFirewall() {
-        // Fetch app store to ensure that proxy/image servers firewall is opened.
-        fetch(`http://widgets.metrological.com/${encodeURIComponent(ux.Ui.getOption('operator') || 'metrological')}/nl/test`).then(() => {});
     }
 
     _getLightningOptions(customOptions = {}) {
