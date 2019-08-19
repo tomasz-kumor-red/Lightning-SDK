@@ -52,7 +52,7 @@ export default class DevLauncher {
         let options = {stage: {w: 1920, h: 1080}, debug: false, keys: this._getNavigationKeys()};
 
         const config = options.stage;
-        if (ux.Ui.hasOption("720") || (lng.Utils.isWeb && window.innerHeight === 720)) {
+        if (customOptions.h === 720) {
             config['w'] = 1280;
             config['h'] = 720;
             config['precision'] = 0.6666666667;
