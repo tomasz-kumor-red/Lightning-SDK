@@ -1,14 +1,10 @@
 import ux from "./src/ux.mjs";
 import lng from 'wpe-lightning-spark';
 import fetch from "node-fetch";
-import keyboard from "./src/keyboard.mjs";
 
 export default class DevLauncher {
 
     constructor() {
-        keyboard((event) => {
-            this._handleKey(event);
-        });
     }
 
     launch(appType, lightningOptions, options = {}) {
