@@ -1,14 +1,10 @@
 import ux from "./src/ux.mjs";
 import lng from 'wpe-lightning-spark';
 import fetch from "node-fetch";
-import keyboard from "./src/keyboard.mjs";
 
 export default class DevLauncher {
 
     constructor() {
-        keyboard((event) => {
-            this._handleKey(event);
-        });
     }
 
     launch(appType, lightningOptions, options = {}) {
@@ -45,14 +41,14 @@ export default class DevLauncher {
 
     _openFirewall() {
         // Fetch app store to ensure that proxy/image servers firewall is opened.
-        fetch(`http://widgets.metrological.com/${encodeURIComponent(ux.Ui.getOption('operator') || 'metrological')}/nl/test`).then(() => {});
+        //fetch(`http://widgets.metrological.com/${encodeURIComponent(ux.Ui.getOption('operator') || 'metrological')}/nl/test`).then(() => {});
     }
 
     _getLightningOptions(customOptions = {}) {
         let options = {stage: {w: 1920, h: 1080}, debug: false, keys: this._getNavigationKeys()};
 
         const config = options.stage;
-        if (ux.Ui.hasOption("720") || (lng.Utils.isWeb && window.innerHeight === 720)) {
+        if (customOptions.h === 720) {
             config['w'] = 1280;
             config['h'] = 720;
             config['precision'] = 0.6666666667;
