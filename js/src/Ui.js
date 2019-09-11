@@ -104,8 +104,9 @@ export default class Ui extends lng.Application {
                                     this._currentApp.fontFaces = fontFaces;
                                 }).catch((e) => {
                                     console.warn('Font loading issues: ' + e);
+                                }).finally(()=>{
+                                    this._done();
                                 });
-                                this._done();
                             }
                             _done() {
                                 this._setState("App.Started");
