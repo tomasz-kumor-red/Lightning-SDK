@@ -46,22 +46,19 @@ export default class Ui extends lng.Application {
         }
     }
 
-    static loadFonts(fonts) {
+    loadPlatformFonts(fonts) {
         if (lng.Utils.isNode && !lng.Utils.isSpark) {
             // Font loading not supported. Fonts should be installed in Linux system and then they can be picked up by cairo.
             return Promise.resolve();
         }
 
         if (lng.Utils.isSpark) {
-            let promises = [];
-            let fontResources = new Map();
-            for (let font of fonts) {
-                let fontResource = sparkscene.create({t: "fontResource", url: font.url});
-                promises.push(fontResource.ready);
-                fontResources.set(font.family, fontResource);
-            }
-            return Promise.all(promises).then(() => {return fontResources});
+            let ret = this.stage.platform.loadFonts(fonts);
+            return Promise.all(ret.promises).then(() => {return ret.fontResources});
         }
+    }
+
+    static loadFonts(fonts) {
         const fontFaces = fonts.map(({family, url, descriptors}) => new FontFace(family, `url(${url})`, descriptors));
         fontFaces.forEach(fontFace => {
             document.fonts.add(fontFace);
@@ -99,8 +96,9 @@ export default class Ui extends lng.Application {
                                 };
 
                                 // Preload fonts.
-                                const fonts = this._currentApp.type.getFonts();
-                                Ui.loadFonts(fonts.concat(Ui.getFonts())).then((fontFaces) => {
+                                const fonts = this._currentApp.type.getFonts().concat(Ui.getFonts());
+                                let fn = lng.Utils.isWeb ? Ui.loadFonts(fonts): this.loadPlatformFonts(fonts);
+                                fn.then((fontFaces) => {
                                     this._currentApp.fontFaces = fontFaces;
                                 }).catch((e) => {
                                     console.warn('Font loading issues: ' + e);
