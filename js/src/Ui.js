@@ -11,8 +11,16 @@ export default class Ui extends lng.Application {
     }
 
     static _template() {
+        let mediaPlayerType = NoopMediaplayer;
+        if (lng.Utils.isWeb) {
+            mediaPlayerType = Mediaplayer;
+        }
+        else if (lng.Utils.isSpark) {
+            mediaPlayerType = SparkMediaplayer;
+        }
+
         return {
-            Mediaplayer: {type: lng.Utils.isWeb ? Mediaplayer : NoopMediaplayer, textureMode: Ui.hasOption('texture')},
+            Mediaplayer: {type: mediaPlayerType, textureMode: Ui.hasOption('texture')},
             AppWrapper: {}
         };
     }
