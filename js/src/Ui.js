@@ -16,7 +16,7 @@ export default class Ui extends lng.Application {
             mediaPlayerType = Mediaplayer;
         }
         else if (lng.Utils.isSpark) {
-            mediaPlayerType = SparkMediaplayer$1;
+            mediaPlayerType = SparkMediaplayer;
         }
 
         return {
