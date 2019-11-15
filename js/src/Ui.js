@@ -1,6 +1,7 @@
 import Mediaplayer from "./Mediaplayer.js";
 import NoopMediaplayer from "./NoopMediaplayer.js";
 import ScaledImageTexture from "./ScaledImageTexture.js";
+import SparkMediaplayer from "wpe-lightning-spark/src/platforms/spark/SparkMediaplayer.mjs";
 
 export default class Ui extends lng.Application {
 
