@@ -1,7 +1,10 @@
 import Mediaplayer from "./Mediaplayer.js";
 import NoopMediaplayer from "./NoopMediaplayer.js";
 import ScaledImageTexture from "./ScaledImageTexture.js";
-import SparkMediaplayer from "wpe-lightning-spark/src/platforms/spark/SparkMediaplayer.mjs";
+
+if (lng.Utils.isSpark) {
+    import SparkMediaplayer from "wpe-lightning-spark/src/platforms/spark/SparkMediaplayer.mjs";
+}
 
 export default class Ui extends lng.Application {
 
@@ -167,8 +170,7 @@ export default class Ui extends lng.Application {
     }
 
     static getImageUrl(url, opts = {}) {
-        //throw new Error("{src: Ui.getImageUrl(...)} is deprecated. Please use {texture: Ui.getImage(...)} instead.");
-        return this._getCdnProtocol() + "://cdn.metrological.com/image" + this.getQueryString(url, opts);
+        throw new Error("{src: Ui.getImageUrl(...)} is deprecated. Please use {texture: Ui.getImage(...)} instead.");
     }
 
     static getQrUrl(url, opts = {}) {
