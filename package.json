@@ -12,11 +12,11 @@
     "rollup": "^0.67.0",
     "shelljs": "^0.8.3",
     "targz": "^1.0.1",
-    "wpe-lightning": "https://github.com/tomasz-kumor-red/Lightning.git#Lightning-Spark-test"
+    "wpe-lightning": "https://github.com/WebPlatformForEmbedded/Lightning.git"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:tomasz-kumor-red/Lightning-SDK.git#sparkmediaplayer"
+    "url": "git@github.com:WebPlatformForEmbedded/Lightning-SDK.git"
   },
   "bugs": {
     "url": "https://github.com/WebPlatformForEmbedded/Lightning-SDK/issues"
